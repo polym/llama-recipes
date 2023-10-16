@@ -187,12 +187,14 @@ def main(**kwargs):
             rank=dist.get_rank(),
             num_replicas=dist.get_world_size(),
             shuffle=True,
+            drop_last=True,
         )
         if train_config.run_validation:
             val_sampler = DistributedSampler(
                 dataset_val,
                 rank=dist.get_rank(),
                 num_replicas=dist.get_world_size(),
+                drop_last=True,
             )
 
     # Create DataLoaders for the training and validation dataset
